@@ -38,7 +38,7 @@ pipeline {
             }
         }
 
-         stage('SonarQube Scan') {
+        stage('SonarQube Scan') {
             steps {
                 withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
                     dir('account-service') {
