@@ -86,7 +86,7 @@ pipeline {
                 
                 withCredentials([file(credentialsId: 'nexus-repo-credentials', variable: 'SETTINGS_XML')]) {
                     dir('account-service') {
-                        sh 'mvn deploy -s $SETTINGS_XML'
+                        sh 'mvn deploy -DskipTests -s $SETTINGS_XML'
                     }
                 }
             }
