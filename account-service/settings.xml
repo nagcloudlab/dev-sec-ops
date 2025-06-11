@@ -3,7 +3,7 @@
     <server>
       <id>nexus</id>
       <username>admin</username>
-      <password>adminadmin</password>
+      <password>admin@NPCI1212</password>
     </server>
   </servers>
 </settings>
