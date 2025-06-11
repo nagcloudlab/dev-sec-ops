@@ -159,6 +159,13 @@
 
     </dependencies>
 
+    <distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <url>http://20.204.162.36:8081/repository/maven-snapshots/</url>
+        </repository>
+    </distributionManagement>
+
     <build>
         <plugins>
             <!-- ✅ Compiler plugin -->
