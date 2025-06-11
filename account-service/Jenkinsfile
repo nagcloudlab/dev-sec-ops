@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    // parameters {
-    //     choice(name: 'JAVA_VERSION', choices: ['17', '21'], description: 'Java version to test with')
-    // }
+    parameters {
+        choice(name: 'JAVA_VERSION', choices: ['17', '21'], description: 'Java version to test with')
+    }
 
     // environment {
     //     MAVEN_OPTS = "-Dmaven.repo.local=.m2/repository"
@@ -56,6 +56,8 @@ pipeline {
 
         stage('Deploy') {
             steps {
+                input message: 'Deploy to Nexus Repository?', ok: 'Deploy'
+                
                 withCredentials([file(credentialsId: 'nexus-repo-credentials', variable: 'SETTINGS_XML')]) {
                     dir('account-service') {
                         sh 'mvn deploy -s $SETTINGS_XML'
