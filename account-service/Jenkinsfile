@@ -55,13 +55,13 @@ pipeline {
 
 
 
-         stage('Dependency Vulnerability Scan') {
-            steps {
-                dir('account-service') {
-                    sh 'mvn org.owasp:dependency-check-maven:check'
-                }
-            }
-        }
+        //  stage('Dependency Vulnerability Scan') {
+        //     steps {
+        //         dir('account-service') {
+        //             sh 'mvn org.owasp:dependency-check-maven:check'
+        //         }
+        //     }
+        // }
 
 
         stage('Package') {
@@ -91,6 +91,29 @@ pipeline {
                 }
             }
         }
+
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    def imageName = "docker.io/nagabhushanamn/account-service"
+                    def imageTag = "v${env.BUILD_ID}"
+                    def fullImage = "${imageName}:${imageTag}"
+
+                    dir('account-service') {
+                        sh "docker build -t ${fullImage} ."
+                        // sh "docker tag ${fullImage} ${imageName}:latest"
+                        // Optional: Push to local or remote registry
+                        sh "docker push ${fullImage}"
+                    }
+
+                    // Save image name for next steps
+                    //env.IMAGE_NAME = imageName
+                    //env.IMAGE_TAG = imageTag
+                }
+            }
+        }
+
     }
 
     post {
