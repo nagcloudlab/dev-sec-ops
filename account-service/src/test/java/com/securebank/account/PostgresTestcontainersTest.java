@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-public class AccountRepositoryTest extends TestcontainersConfig {
+public class PostgresTestcontainersTest extends TestcontainersConfig {
 
     @Autowired
     private AccountRepository accountRepository;

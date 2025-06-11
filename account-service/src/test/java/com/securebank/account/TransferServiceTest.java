@@ -37,6 +37,7 @@ public class TransferServiceTest {
         @DisplayName("Should transfer funds between accounts")
         void testTransfer(BigDecimal fromBalance, BigDecimal toBalance, BigDecimal amount,
                 BigDecimal expectedFrom, BigDecimal expectedTo) {
+
             Account from = new Account(1L, fromBalance);
             Account to = new Account(2L, toBalance);
 
