@@ -45,10 +45,20 @@ pipeline {
                         sh '''
                             mvn sonar:sonar \
                               -Dsonar.projectKey=account-service \
-                              -Dsonar.host.url=http://20.204.162.36:9000/
+                              -Dsonar.host.url=http://20.204.162.36:9000/ \
                               -Dsonar.login=$SONAR_TOKEN
                         '''
                     }
+                }
+            }
+        }
+
+
+
+         stage('Dependency Vulnerability Scan') {
+            steps {
+                dir('account-service') {
+                    sh 'mvn org.owasp:dependency-check-maven:check'
                 }
             }
         }
