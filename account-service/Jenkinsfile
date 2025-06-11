@@ -102,9 +102,9 @@ pipeline {
 
                     dir('account-service') {
                         sh "docker build -t ${fullImage} ."
-                        // sh "docker tag ${fullImage} ${imageName}:latest"
+                        sh "docker tag ${fullImage} ${imageName}:latest"
                         // Optional: Push to local or remote registry
-                        sh "docker push ${fullImage}"
+                        sh "docker push ${fullImage}:latest"
                     }
 
                     // Save image name for next steps
